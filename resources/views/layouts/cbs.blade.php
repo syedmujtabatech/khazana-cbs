@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>@yield('title', 'Cockpit') - Khazana Core Banking System (خزانہ بینک)</title>
+    <title>@yield('title', 'Cockpit') - Khazana Core Banking (خزانہ بینک)</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
@@ -14,24 +14,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
 
-    <!-- Core CSS -->
+    <!-- Core Sneat CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/theme-default.css') }}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+
+    <!-- Khazana Enterprise Banking Luxury Theme -->
+    <link rel="stylesheet" href="{{ asset('assets/css/banking-theme.css') }}" />
 
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/config.js') }}"></script>
 
-    <style>
-        .bank-badge { font-family: 'Public Sans', sans-serif; font-weight: 600; letter-spacing: 0.5px; }
-        .currency-pkr { font-family: 'Public Sans', monospace; font-weight: 600; }
-        .bg-bank-navy { background-color: #0d2847 !important; }
-        .menu-inner .menu-item.active > .menu-link { background: linear-gradient(72.47deg, #0d2847 0%, #1a4f8b 100%) !important; box-shadow: 0 4px 10px rgba(13, 40, 71, 0.3); }
-        .app-brand-text { font-size: 1.25rem; font-weight: 700; color: #0d2847 !important; }
-        .security-stamp { border-left: 3px solid #28a745; padding-left: 10px; }
-    </style>
     @stack('styles')
 </head>
 
@@ -39,25 +33,33 @@
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
-            <!-- Menu Sidebar -->
-            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-                <div class="app-brand demo py-3">
-                    <a href="{{ route('cbs.dashboard') }}" class="app-brand-link">
-                        <span class="app-brand-logo demo">
-                            <span class="badge bg-primary p-2 me-2">
-                                <i class="bx bxs-bank fs-4 text-white"></i>
-                            </span>
-                        </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">خزانہ CBS</span>
+            <!-- Luxury Midnight Navy Sidebar -->
+            <aside id="layout-menu" class="layout-menu menu-vertical menu">
+                <!-- Premium Bank Crest Brand -->
+                <div class="app-brand demo py-3 px-3 d-flex align-items-center">
+                    <a href="{{ route('cbs.dashboard') }}" class="app-brand-link d-flex align-items-center text-decoration-none">
+                        <!-- Luxury Gold Bank SVG Emblem -->
+                        <div class="bank-crest me-2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7V9H22V7L12 2Z" fill="white"/>
+                                <path d="M4 11H7V18H4V11Z" fill="white" fill-opacity="0.9"/>
+                                <path d="M10.5 11H13.5V18H10.5V11Z" fill="white" fill-opacity="0.9"/>
+                                <path d="M17 11H20V18H17V11Z" fill="white" fill-opacity="0.9"/>
+                                <path d="M2 19H22V22H2V19Z" fill="white"/>
+                                <circle cx="12" cy="5.5" r="1.2" fill="#F59E0B"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="bank-brand-title">KHAZANA BANK</div>
+                            <small class="bank-brand-sub"><span class="bank-brand-urdu">خزانہ بینک</span> &bull; CORE CBS</small>
+                        </div>
                     </a>
-                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none text-white">
                         <i class="bx bx-chevron-left bx-sm align-middle"></i>
                     </a>
                 </div>
 
-                <div class="menu-inner-shadow"></div>
-
-                <ul class="menu-inner py-1">
+                <ul class="menu-inner py-2">
                     <!-- Core Cockpit -->
                     <li class="menu-item {{ request()->routeIs('cbs.dashboard') ? 'active' : '' }}">
                         <a href="{{ route('cbs.dashboard') }}" class="menu-link">
@@ -66,7 +68,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-header small text-uppercase">
+                    <li class="menu-header">
                         <span class="menu-header-text">Banking Operations</span>
                     </li>
 
@@ -94,7 +96,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-header small text-uppercase">
+                    <li class="menu-header">
                         <span class="menu-header-text">Four-Eyes Governance</span>
                     </li>
 
@@ -107,12 +109,12 @@
                                 $pendingMc = \App\Models\MakerCheckerRequest::where('status', 'pending')->count();
                             @endphp
                             @if($pendingMc > 0)
-                                <div class="badge bg-danger rounded-pill ms-auto">{{ $pendingMc }}</div>
+                                <span class="badge bg-danger rounded-pill ms-auto px-2">{{ $pendingMc }}</span>
                             @endif
                         </a>
                     </li>
 
-                    <li class="menu-header small text-uppercase">
+                    <li class="menu-header">
                         <span class="menu-header-text">General Ledger (GL)</span>
                     </li>
 
@@ -140,7 +142,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-header small text-uppercase">
+                    <li class="menu-header">
                         <span class="menu-header-text">SBP Compliance & Risk</span>
                     </li>
 
@@ -155,7 +157,7 @@
                     <li class="menu-item {{ request()->routeIs('cbs.compliance.ctr') ? 'active' : '' }}">
                         <a href="{{ route('cbs.compliance.ctr') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-file-blank"></i>
-                            <div>CTR Reports (&gt;2M PKR)</div>
+                            <div>CTR Reports (&ge;2M PKR)</div>
                         </a>
                     </li>
 
@@ -173,7 +175,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-header small text-uppercase">
+                    <li class="menu-header">
                         <span class="menu-header-text">Day End Processing</span>
                     </li>
 
@@ -185,98 +187,88 @@
                         </a>
                     </li>
 
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Digital Channels</span>
+                    <li class="menu-header">
+                        <span class="menu-header-text">Digital Banking</span>
                     </li>
 
                     <li class="menu-item">
-                        <a href="{{ route('portal.dashboard') }}" class="menu-link text-primary fw-bold" target="_blank">
-                            <i class="menu-icon tf-icons bx bx-globe"></i>
-                            <div>Internet Banking Portal &nearr;</div>
+                        <a href="{{ route('portal.dashboard') }}" class="menu-link text-warning fw-bold" target="_blank">
+                            <i class="menu-icon tf-icons bx bx-laptop text-warning"></i>
+                            <div>Internet Banking &nearr;</div>
                         </a>
                     </li>
                 </ul>
             </aside>
-            <!-- / Menu -->
+            <!-- / Sidebar -->
 
-            <!-- Layout container -->
+            <!-- Layout page -->
             <div class="layout-page">
-                <!-- Navbar -->
-                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+                <!-- Top Navbar -->
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center" id="layout-navbar">
                     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                        <a class="nav-item nav-link px-0 me-xl-4 text-dark" href="javascript:void(0)">
                             <i class="bx bx-menu bx-sm"></i>
                         </a>
                     </div>
 
                     <div class="navbar-nav-right d-flex align-items-center justify-content-between w-100" id="navbar-collapse">
-                        <!-- SBP RTGS System Indicator -->
+                        <!-- SBP RTGS Status & Branch -->
                         <div class="navbar-nav align-items-center">
-                            <div class="nav-item d-flex align-items-center">
-                                <span class="badge bg-label-success me-2 py-2">
-                                    <span class="badge badge-dot bg-success me-1"></span> SBP RTGS / PRISM Online
+                            <div class="nav-item d-flex align-items-center flex-wrap gap-2">
+                                <span class="sbp-live-badge">
+                                    <span class="sbp-dot"></span> SBP PRISM / RTGS Operational
                                 </span>
-                                <span class="badge bg-label-primary py-2 d-none d-md-inline-block">
-                                    <i class="bx bx-buildings me-1"></i> {{ auth()->user()->branch->name ?? 'Karachi Corporate Main' }}
+                                <span class="branch-badge d-none d-md-inline-flex">
+                                    <i class="bx bxs-business me-1 text-primary"></i> {{ auth()->user()->branch->name ?? 'Karachi Corporate Main Branch' }} ({{ auth()->user()->branch->code ?? '0010' }})
                                 </span>
                             </div>
                         </div>
 
-                        <!-- Right navbar options & Fast Switcher -->
+                        <!-- Right Options & Role Switcher -->
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
-                            <!-- Fast Demo Switcher -->
-                            <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3">
-                                <a class="nav-link dropdown-toggle hide-arrow btn btn-sm btn-outline-primary px-3" href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <i class="bx bx-transfer-alt me-1"></i> Switch Role
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end shadow">
-                                    <li class="dropdown-header text-uppercase small fw-bold">Executive / Operations</li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'super_admin') }}"><i class="bx bx-shield-quarter me-2 text-primary"></i> Super Admin / CTO</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'branch_manager') }}"><i class="bx bx-user-check me-2 text-success"></i> Branch Manager (Checker)</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'maker_officer') }}"><i class="bx bx-edit-alt me-2 text-info"></i> Operations Officer (Maker)</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'teller') }}"><i class="bx bx-money me-2 text-warning"></i> Cash Desk Teller</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'compliance_officer') }}"><i class="bx bx-shield me-2 text-danger"></i> AML Compliance Officer</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="dropdown-header text-uppercase small fw-bold">Customer Internet Banking</li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'customer_bilal') }}"><i class="bx bx-laptop me-2 text-info"></i> Customer Bilal Farooq</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'customer_tariq') }}"><i class="bx bx-briefcase me-2 text-primary"></i> Customer Tariq Mehmood</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'customer_pep') }}"><i class="bx bx-star me-2 text-danger"></i> Senator Malik Aslam (PEP)</a></li>
+                            <!-- Fast Role Switcher Dropdown -->
+                            <li class="nav-item dropdown me-3">
+                                <button type="button" class="btn btn-role-switcher dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bx bx-transfer-alt me-1 fs-5"></i> Switch Role
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 p-2" style="min-width: 280px; border-radius: 12px;">
+                                    <li class="dropdown-header text-uppercase small fw-bold text-muted px-3 py-1">Bank Staff Access</li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'super_admin') }}"><i class="bx bx-shield-quarter me-2 text-primary fs-5"></i> <strong>Super Admin / CTO</strong><div class="small text-muted ps-4">Head Office Governance</div></a></li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'branch_manager') }}"><i class="bx bx-user-check me-2 text-success fs-5"></i> <strong>Branch Manager</strong><div class="small text-muted ps-4">Checker Authorization Desk</div></a></li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'maker_officer') }}"><i class="bx bx-edit-alt me-2 text-info fs-5"></i> <strong>Maker Officer</strong><div class="small text-muted ps-4">Operations & CIF Creation</div></a></li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'teller') }}"><i class="bx bx-money me-2 text-warning fs-5"></i> <strong>Cashier / Teller</strong><div class="small text-muted ps-4">Till Deposit & Dispense</div></a></li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'compliance_officer') }}"><i class="bx bx-shield me-2 text-danger fs-5"></i> <strong>AML Compliance Officer</strong><div class="small text-muted ps-4">SBP CTR/STR Surveillance</div></a></li>
+                                    <li><hr class="dropdown-divider my-2"></li>
+                                    <li class="dropdown-header text-uppercase small fw-bold text-muted px-3 py-1">Customer Internet Banking</li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'customer_bilal') }}"><i class="bx bx-laptop me-2 text-info fs-5"></i> <strong>Bilal Farooq</strong><div class="small text-muted ps-4">Digital Tech Customer</div></a></li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'customer_tariq') }}"><i class="bx bx-briefcase me-2 text-primary fs-5"></i> <strong>Tariq Mehmood</strong><div class="small text-muted ps-4">Commercial Business Current</div></a></li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'customer_pep') }}"><i class="bx bx-star me-2 text-danger fs-5"></i> <strong>Senator Malik Aslam</strong><div class="small text-muted ps-4">High Net Worth PEP Account</div></a></li>
                                 </ul>
                             </li>
 
-                            <!-- User Profile Dropdown -->
+                            <!-- User Avatar & Logout -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <div class="avatar avatar-online">
-                                        <div class="avatar-initial rounded-circle bg-label-primary fw-bold">
+                                <a class="nav-link dropdown-toggle hide-arrow d-flex align-items-center" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online me-2">
+                                        <div class="avatar-initial rounded-circle bg-primary text-white fw-bold shadow-sm">
                                             {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
                                         </div>
                                     </div>
+                                    <div class="d-none d-lg-block text-start">
+                                        <span class="fw-bold d-block text-dark small lh-1">{{ auth()->user()->name }}</span>
+                                        <small class="badge {{ auth()->user()->role_badge_class }}" style="font-size: 0.68rem;">{{ ucwords(str_replace('_', ' ', auth()->user()->role)) }}</small>
+                                    </div>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0);">
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar avatar-online">
-                                                        <div class="avatar-initial rounded-circle bg-label-primary fw-bold">
-                                                            {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
-                                                    <small class="badge {{ auth()->user()->role_badge_class }}">{{ ucwords(str_replace('_', ' ', auth()->user()->role)) }}</small>
-                                                </div>
-                                            </div>
-                                        </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 p-2" style="border-radius: 12px; min-width: 220px;">
+                                    <li class="px-3 py-2 border-bottom mb-2">
+                                        <span class="fw-bold d-block text-dark">{{ auth()->user()->name }}</span>
+                                        <small class="text-muted">{{ auth()->user()->email }}</small>
                                     </li>
-                                    <li><div class="dropdown-divider"></div></li>
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
-                                            <button type="submit" class="dropdown-item text-danger">
-                                                <i class="bx bx-power-off me-2"></i> Log Out
+                                            <button type="submit" class="dropdown-item rounded text-danger py-2">
+                                                <i class="bx bx-power-off me-2"></i> Log Out of CBS
                                             </button>
                                         </form>
                                     </li>
@@ -285,74 +277,67 @@
                         </ul>
                     </div>
                 </nav>
-                <!-- / Navbar -->
+                <!-- / Top Navbar -->
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                    <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <!-- Flash messages -->
+                        <!-- Flash alerts -->
                         @if(session('success'))
-                            <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-                                <i class="bx bx-check-circle me-1"></i> {{ session('success') }}
+                            <div class="alert alert-success alert-dismissible fade show shadow-sm border-0" role="alert" style="border-left: 4px solid #10B981 !important;">
+                                <i class="bx bx-check-circle me-1 fs-5 align-middle"></i> {{ session('success') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
 
                         @if(session('error'))
-                            <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
-                                <i class="bx bx-error-circle me-1"></i> {{ session('error') }}
+                            <div class="alert alert-danger alert-dismissible fade show shadow-sm border-0" role="alert" style="border-left: 4px solid #EF4444 !important;">
+                                <i class="bx bx-error-circle me-1 fs-5 align-middle"></i> {{ session('error') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
 
                         @if(session('info'))
-                            <div class="alert alert-info alert-dismissible fade show shadow-sm" role="alert">
-                                <i class="bx bx-info-circle me-1"></i> {{ session('info') }}
+                            <div class="alert alert-info alert-dismissible fade show shadow-sm border-0" role="alert" style="border-left: 4px solid #3B82F6 !important;">
+                                <i class="bx bx-info-circle me-1 fs-5 align-middle"></i> {{ session('info') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
 
                         @if(session('warning'))
-                            <div class="alert alert-warning alert-dismissible fade show shadow-sm" role="alert">
-                                <i class="bx bx-alert me-1"></i> {{ session('warning') }}
+                            <div class="alert alert-warning alert-dismissible fade show shadow-sm border-0" role="alert" style="border-left: 4px solid #F59E0B !important;">
+                                <i class="bx bx-alert me-1 fs-5 align-middle"></i> {{ session('warning') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
 
                         @yield('content')
                     </div>
-                    <!-- / Content -->
 
                     <!-- Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
-                                © 2026 <strong>Khazana Core Banking System (خزانہ CBS)</strong>. Licensed for Financial Institutions & SBP Regulatory Compliance.
+                    <footer class="content-footer footer bg-footer-theme border-top mt-4">
+                        <div class="container-xxl d-flex flex-wrap justify-content-between py-3 flex-md-row flex-column align-items-center">
+                            <div class="mb-2 mb-md-0 text-muted small">
+                                &copy; 2026 <strong>Khazana Core Banking System (خزانہ بینک)</strong>. Licensed for Financial Institutions &amp; SBP Compliance.
                             </div>
                             <div>
                                 <span class="badge bg-label-secondary">Double-Entry Core v2.4</span>
                                 <span class="badge bg-label-success ms-1">ISO 7064 Mod-97</span>
+                                <span class="badge bg-label-primary ms-1">1LINK Member</span>
                             </div>
                         </div>
                     </footer>
-                    <!-- / Footer -->
-
-                    <div class="content-backdrop fade"></div>
                 </div>
-                <!-- Content wrapper -->
             </div>
-            <!-- / Layout page -->
         </div>
 
-        <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-    <!-- / Layout wrapper -->
 
     <!-- Core JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>

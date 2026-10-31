@@ -14,11 +14,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
 
-    <!-- Core CSS -->
+    <!-- Core Sneat CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/theme-default.css') }}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+
+    <!-- Khazana Enterprise Banking Luxury Theme -->
+    <link rel="stylesheet" href="{{ asset('assets/css/banking-theme.css') }}" />
 
     <style>
         .portal-header { background: linear-gradient(135deg, #071e3d 0%, #1f4287 100%); color: #fff; }
@@ -58,21 +60,27 @@
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Sidebar -->
-            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-                <div class="app-brand demo py-3">
-                    <a href="{{ route('portal.dashboard') }}" class="app-brand-link">
-                        <span class="app-brand-logo demo">
-                            <span class="badge bg-success p-2 me-2">
-                                <i class="bx bx-shield-quarter fs-4 text-white"></i>
-                            </span>
-                        </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2 text-dark">خزانہ ڈیجیٹل</span>
+            <aside id="layout-menu" class="layout-menu menu-vertical menu">
+                <div class="app-brand demo py-3 px-3 d-flex align-items-center">
+                    <a href="{{ route('portal.dashboard') }}" class="app-brand-link d-flex align-items-center text-decoration-none">
+                        <div class="bank-crest me-2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7V9H22V7L12 2Z" fill="white"/>
+                                <path d="M4 11H7V18H4V11Z" fill="white" fill-opacity="0.9"/>
+                                <path d="M10.5 11H13.5V18H10.5V11Z" fill="white" fill-opacity="0.9"/>
+                                <path d="M17 11H20V18H17V11Z" fill="white" fill-opacity="0.9"/>
+                                <path d="M2 19H22V22H2V19Z" fill="white"/>
+                                <circle cx="12" cy="5.5" r="1.2" fill="#F59E0B"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="bank-brand-title">KHAZANA BANK</div>
+                            <small class="bank-brand-sub"><span class="bank-brand-urdu">خزانہ ڈیجیٹل</span> &bull; Customer Portal</small>
+                        </div>
                     </a>
                 </div>
 
-                <div class="menu-inner-shadow"></div>
-
-                <ul class="menu-inner py-1">
+                <ul class="menu-inner py-2">
                     <li class="menu-item {{ request()->routeIs('portal.dashboard') ? 'active' : '' }}">
                         <a href="{{ route('portal.dashboard') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
@@ -87,7 +95,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-header small text-uppercase">
+                    <li class="menu-header">
                         <span class="menu-header-text">Payments & Transfers</span>
                     </li>
 
@@ -105,7 +113,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-header small text-uppercase">
+                    <li class="menu-header">
                         <span class="menu-header-text">Self-Service Banking</span>
                     </li>
 
@@ -130,13 +138,13 @@
                         </a>
                     </li>
 
-                    <li class="menu-header small text-uppercase">
+                    <li class="menu-header">
                         <span class="menu-header-text">Staff Control</span>
                     </li>
 
                     <li class="menu-item">
-                        <a href="{{ route('cbs.dashboard') }}" class="menu-link text-info fw-bold">
-                            <i class="menu-icon tf-icons bx bx-arrow-back"></i>
+                        <a href="{{ route('cbs.dashboard') }}" class="menu-link text-warning fw-bold">
+                            <i class="menu-icon tf-icons bx bx-arrow-back text-warning"></i>
                             <div>Back to CBS Admin &larr;</div>
                         </a>
                     </li>
@@ -147,62 +155,65 @@
             <!-- Layout page -->
             <div class="layout-page">
                 <!-- Navbar -->
-                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center" id="layout-navbar">
                     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                        <a class="nav-item nav-link px-0 me-xl-4 text-dark" href="javascript:void(0)">
                             <i class="bx bx-menu bx-sm"></i>
                         </a>
                     </div>
 
                     <div class="navbar-nav-right d-flex align-items-center justify-content-between w-100" id="navbar-collapse">
                         <div class="navbar-nav align-items-center">
-                            <span class="badge bg-label-success py-2">
-                                <i class="bx bx-lock-alt me-1"></i> 256-bit SBP Encrypted Session
-                            </span>
-                            @if(auth()->user()->customerProfile)
-                                <span class="badge bg-label-primary ms-2 py-2 d-none d-md-inline-block">
-                                    CIF: {{ auth()->user()->customerProfile->cif_number }}
+                            <div class="nav-item d-flex align-items-center flex-wrap gap-2">
+                                <span class="sbp-live-badge">
+                                    <span class="sbp-dot"></span> 256-bit SBP Encrypted Session
                                 </span>
-                            @endif
+                                @if(auth()->user()->customerProfile)
+                                    <span class="branch-badge d-none d-md-inline-flex">
+                                        <i class="bx bx-id-card me-1 text-primary"></i> CIF: {{ auth()->user()->customerProfile->cif_number }}
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- Quick Switcher -->
                             <li class="nav-item dropdown me-3">
-                                <a class="nav-link dropdown-toggle hide-arrow btn btn-sm btn-outline-success px-3" href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <i class="bx bx-transfer-alt me-1"></i> Switch Profile
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end shadow">
-                                    <li class="dropdown-header text-uppercase small fw-bold">Customer Profiles</li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'customer_bilal') }}"><i class="bx bx-user me-2 text-primary"></i> Bilal Farooq (Software Architect)</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'customer_tariq') }}"><i class="bx bx-user me-2 text-success"></i> Tariq Mehmood (Business Current)</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'customer_pep') }}"><i class="bx bx-star me-2 text-danger"></i> Senator Malik Aslam (PEP Account)</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="dropdown-header text-uppercase small fw-bold">Bank Staff Access</li>
-                                    <li><a class="dropdown-item" href="{{ route('demo.switch', 'super_admin') }}"><i class="bx bx-shield-quarter me-2 text-danger"></i> Return to Super Admin CBS</a></li>
+                                <button type="button" class="btn btn-role-switcher dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bx bx-transfer-alt me-1 fs-5"></i> Switch Profile
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 p-2" style="min-width: 280px; border-radius: 12px;">
+                                    <li class="dropdown-header text-uppercase small fw-bold text-muted px-3 py-1">Customer Profiles</li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'customer_bilal') }}"><i class="bx bx-laptop me-2 text-info fs-5"></i> <strong>Bilal Farooq</strong><div class="small text-muted ps-4">Software Architect</div></a></li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'customer_tariq') }}"><i class="bx bx-briefcase me-2 text-primary fs-5"></i> <strong>Tariq Mehmood</strong><div class="small text-muted ps-4">Business Current A/C</div></a></li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'customer_pep') }}"><i class="bx bx-star me-2 text-danger fs-5"></i> <strong>Senator Malik Aslam</strong><div class="small text-muted ps-4">PEP High Net Worth</div></a></li>
+                                    <li><hr class="dropdown-divider my-2"></li>
+                                    <li class="dropdown-header text-uppercase small fw-bold text-muted px-3 py-1">Bank Staff Access</li>
+                                    <li><a class="dropdown-item rounded py-2 px-3" href="{{ route('demo.switch', 'super_admin') }}"><i class="bx bx-shield-quarter me-2 text-danger fs-5"></i> <strong>Return to Super Admin CBS</strong></a></li>
                                 </ul>
                             </li>
 
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <div class="avatar avatar-online">
-                                        <div class="avatar-initial rounded-circle bg-label-success fw-bold">
+                                <a class="nav-link dropdown-toggle hide-arrow d-flex align-items-center" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online me-2">
+                                        <div class="avatar-initial rounded-circle bg-success text-white fw-bold shadow-sm">
                                             {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
                                         </div>
                                     </div>
+                                    <div class="d-none d-lg-block text-start">
+                                        <span class="fw-bold d-block text-dark small lh-1">{{ auth()->user()->name }}</span>
+                                        <small class="badge bg-label-success" style="font-size: 0.68rem;">Customer</small>
+                                    </div>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li>
-                                        <div class="dropdown-item">
-                                            <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
-                                            <small class="text-muted">Digital Banking Customer</small>
-                                        </div>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 p-2" style="border-radius: 12px; min-width: 200px;">
+                                    <li class="px-3 py-2 border-bottom mb-2">
+                                        <span class="fw-bold d-block text-dark">{{ auth()->user()->name }}</span>
+                                        <small class="text-muted">{{ auth()->user()->email }}</small>
                                     </li>
-                                    <li><div class="dropdown-divider"></div></li>
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
-                                            <button type="submit" class="dropdown-item text-danger">
+                                            <button type="submit" class="dropdown-item rounded text-danger py-2">
                                                 <i class="bx bx-power-off me-2"></i> Log Out
                                             </button>
                                         </form>
@@ -218,15 +229,15 @@
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         @if(session('success'))
-                            <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-                                <i class="bx bx-check-circle me-1"></i> {{ session('success') }}
+                            <div class="alert alert-success alert-dismissible fade show shadow-sm border-0" role="alert" style="border-left: 4px solid #10B981 !important;">
+                                <i class="bx bx-check-circle me-1 fs-5 align-middle"></i> {{ session('success') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
 
                         @if(session('error'))
-                            <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
-                                <i class="bx bx-error-circle me-1"></i> {{ session('error') }}
+                            <div class="alert alert-danger alert-dismissible fade show shadow-sm border-0" role="alert" style="border-left: 4px solid #EF4444 !important;">
+                                <i class="bx bx-error-circle me-1 fs-5 align-middle"></i> {{ session('error') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
@@ -234,10 +245,10 @@
                         @yield('content')
                     </div>
 
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
-                                © 2026 <strong>Khazana Bank Limited</strong>. Protected by State Bank of Pakistan Deposit Protection Corporation (DPC).
+                    <footer class="content-footer footer bg-footer-theme border-top mt-4">
+                        <div class="container-xxl d-flex flex-wrap justify-content-between py-3 flex-md-row flex-column align-items-center">
+                            <div class="mb-2 mb-md-0 text-muted small">
+                                &copy; 2026 <strong>Khazana Bank Limited</strong>. Protected by State Bank of Pakistan Deposit Protection Corporation (DPC).
                             </div>
                             <div>
                                 <span class="badge bg-label-primary">1LINK Member</span>
@@ -252,7 +263,8 @@
 
     <!-- Core JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
